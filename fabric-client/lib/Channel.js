@@ -1476,9 +1476,10 @@ const Channel = class {
 			'ssl-target-name-override': host,
 			'name': name
 		};
-		this._clientContext.addTlsClientCertAndKey(opts);
+		const connectionOptions = this._clientContext._buildConnectionOptions(opts);
+		this._clientContext.addTlsClientCertAndKey(connectionOptions);
 
-		return opts;
+		return connectionOptions;
 	}
 
 	_buildTlsRootCerts(msp) {
